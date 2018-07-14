@@ -11,15 +11,15 @@ const set = new Map(englishToBrailleLiteralSet);
 
 function converter() {
   const str = document.getElementById('sourceLangText').value;
-  let res = '';
-  let i = 0;
-  for (i = 0; i < str.length; i += 1) {
-    res += set.get(str[i]);
-  }
+  const res = Array.prototype.map.call(str, x => set.get(x)).toString().replace(/,/g, '');
+  // let res = '';
+  // for (let i = 0; i < str.length; i += 1) {
+  //   res += set.get(str[i]);
+  // }
   document.getElementById('targetLangText').innerHTML = res;
 }
 
-window.onload = function () {
-  const btn = document.getElementById('btnConvertEnglishToBraille');
-  btn.addEventListener('click', converter);
-};
+document.getElementById('btnConvertEnglishToBraille').addEventListener('click', converter);
+// window.onload = function () {
+//   document.getElementById('btnConvertEnglishToBraille').addEventListener('click', converter);
+// };
